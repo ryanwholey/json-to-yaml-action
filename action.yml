@@ -1,0 +1,12 @@
+name: JSON to YAML
+description: Takes a JSON string and returns a YAML string
+inputs:
+  json:
+    description: JSON string
+    required: true
+outputs:
+  yaml:
+    description: YAML format of the passed JSON string
+runs:
+  using: docker
+  image: Dockerfile
