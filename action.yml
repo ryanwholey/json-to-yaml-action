@@ -1,10 +1,10 @@
 name: Merge JSON array
 description: Takes a JSON string and returns a YAML string
 inputs:
-  source:
+  first:
     description: JSON string array
     required: true
-  destination:
+  second:
     description: JSON string array
     required: true
   sensitive:
