@@ -1,1 +1,1 @@
-# json-to-yaml-action
+# merge-json-arary-action
