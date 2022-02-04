@@ -6,4 +6,4 @@ COPY . ./
 
 RUN go build
 
-ENTRYPOINT ["/src/json-to-yaml"]
+ENTRYPOINT ["/src/merge-json-array"]
