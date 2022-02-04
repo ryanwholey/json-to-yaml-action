@@ -1,15 +1,37 @@
 package main
 
 import (
-	"github.com/ghodss/yaml"
+	"encoding/json"
+
+	inputs "github.com/bendrucker/go-githubactions-inputs"
 	"github.com/sethvargo/go-githubactions"
 )
 
 func main() {
-	b, err := yaml.JSONToYAML([]byte(githubactions.GetInput("json")))
+	var first []interface{}
+	var second []interface{}
+	var merged []interface{}
+
+	if err := json.Unmarshal([]byte(githubactions.GetInput("first")), &first); err != nil {
+		githubactions.Fatalf("Error: %s", err)
+	}
+
+	if err := json.Unmarshal([]byte(githubactions.GetInput("second")), &second); err != nil {
+		githubactions.Fatalf("Error: %s", err)
+	}
+
+	merged = append(first, second)
+
+	b, err := json.Marshal(merged)
 	if err != nil {
 		githubactions.Fatalf("Error: %s", err)
 	}
 
-	githubactions.SetOutput("yaml", string(b))
+	str := string(b)
+
+	if inputs.Bool(githubactions.GetInput("sensitive")) {
+		githubactions.AddMask(str)
+	}
+
+	githubactions.SetOutput("result", str)
 }

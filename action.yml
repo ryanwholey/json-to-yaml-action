@@ -1,9 +1,16 @@
-name: JSON to YAML
+name: Merge JSON array
 description: Takes a JSON string and returns a YAML string
 inputs:
-  json:
-    description: JSON string
+  source:
+    description: JSON string array
     required: true
+  destination:
+    description: JSON string array
+    required: true
+  sensitive:
+    description: Whether to mask the output
+    required: false
+    default: "false"
 outputs:
   yaml:
     description: YAML format of the passed JSON string
