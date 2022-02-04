@@ -20,7 +20,7 @@ func main() {
 		githubactions.Fatalf("Error: %s", err)
 	}
 
-	merged = append(first, second)
+	merged = append(first, second...)
 
 	b, err := json.Marshal(merged)
 	if err != nil {
